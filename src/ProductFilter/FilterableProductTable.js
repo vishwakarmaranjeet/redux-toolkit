@@ -3,10 +3,8 @@ import SearchBar from "./SearchBar";
 import ProductTable from "./ProductTable";
 
 const FilterableProductTable = ({ products }) => {
-    console.log(products);
     const [filterText, setFilterText] = useState("");
     const [inStockOnly, setIsStockOnly] = useState(false);
-
     return (
         <>
             <SearchBar
