@@ -91,6 +91,7 @@ function SIPForm({ onSubmit }) {
 
     useEffect(() => {
         handleSubmit();
+        // eslint-disable-next-line
     }, [sipList]);
 
     return (
