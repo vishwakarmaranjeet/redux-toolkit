@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+import { CATEGORIES } from '../utils/utils';
 
-// Custom style for the select dropdown to make it look like an input but with the arrow visible
 const customStyles = {
     control: (provided) => ({
       ...provided,
-      height: '40px',  // Adjust the height to match input
-      padding: '0 4px',  // Same padding as input
-      borderRadius: '0.375rem',  // Matching rounded corners
-      borderColor: '#D1D5DB',  // Tailwind border color
-      boxShadow: 'none', // Remove box shadow on focus
+      height: '40px',
+      padding: '0 4px',
+      borderRadius: '0.375rem',
+      borderColor: '#D1D5DB',
+      boxShadow: 'none',
       '&:hover': {
-        borderColor: '#3B82F6', // Tailwind hover blue color
+        borderColor: '#3B82F6',
       },
       '&:focus': {
-        borderColor: '#3B82F6',  // Border color on focus
-        boxShadow: '0 0 0 2px rgba(59, 130, 246, 0.5)', // Tailwind ring-blue-400 effect
+        borderColor: '#3B82F6',
+        boxShadow: '0 0 0 2px rgba(59, 130, 246, 0.5)',
       },
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: '#6B7280',  // Tailwind gray-500 color
+      color: '#6B7280',
     }),
     dropdownIndicator: (provided) => ({
       ...provided,
-      color: '#6B7280', // Color of the arrow
+      color: '#6B7280',
       '&:hover': {
-        color: '#3B82F6', // Color on hover
+        color: '#3B82F6',
       },
     }),
   };
@@ -34,45 +34,15 @@ const customStyles = {
 function SIPForm({ onSubmit }) {
     const [sipList, setSipList] = useState([{ category: '', amount: '' }]);
 
-    const categories = [
-        "Large Cap Fund",
-        "Large & Mid Cap Fund",
-        "Mid Cap Fund",
-        "Small Cap Fund",
-        "Flex Cap Fund",
-        "ELSS",
-        "Hybrid Aggresive Fund",
-        "Hybrid Arbitrage Fund",
-        "Hybrid Equity Saving Fund",
-        "Hybrid Conservative Fund",
-        "Hybrid Multi Asset Fund",
-        "Hybrid Dynamic Asset Fund",
-        "Liquid Fund",
-        "Medium Duration Fund",
-        "Short Duration Fund",
-        "Money Market Fund",
-        "Ultra Short Fund",
-        "Low Duration Fund",
-        "Corporate Bond Fund",
-        "Value Fund",
-        "Focused Fund",
-        "Dividend Yield Fund",
-        "Sectoral Theatic",
-        "Index Fund",
-    ];
-
-    const categoryOptions = categories.map((category) => ({ value: category, label: category }));
+    const categoryOptions = CATEGORIES.map((category) => ({ value: category, label: category }));
 
     const handleChange = (index, e) => {
         const { name, value } = e.target;
         const list = [...sipList];
-        // If it's the 'category' field, allow only alphabetic characters
         if (name === 'category') {
-            // Allow only alphabetic characters
             const validValue = value.replace(/[^a-zA-Z\s\-_&]/g, "");
             list[index][name] = validValue;
         } else if (name === 'amount') {
-            // Handle 'amount' field with INR symbol and formatting
             const rawValue = value.replace(/[^\d.]/g, "");
             const formattedValue = new Intl.NumberFormat().format(rawValue);
             list[index][name] = formattedValue.replace(/,/g, "");
@@ -98,8 +68,18 @@ function SIPForm({ onSubmit }) {
         setSipList(list);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const formattedData = {};
+    //     sipList.forEach((item) => {
+    //         if (item.category && item.amount) {
+    //             formattedData[item.category] = parseInt(item.amount);
+    //         }
+    //     });
+    //     onSubmit(formattedData);
+    // };
+
+    const handleSubmit = () => {
         const formattedData = {};
         sipList.forEach((item) => {
             if (item.category && item.amount) {
@@ -108,6 +88,10 @@ function SIPForm({ onSubmit }) {
         });
         onSubmit(formattedData);
     };
+
+    useEffect(() => {
+        handleSubmit();
+    }, [sipList]);
 
     return (
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6 w-full max-w-2xl mx-auto">
@@ -170,7 +154,7 @@ function SIPForm({ onSubmit }) {
                     </svg>
                     <span>Add Category</span>
                 </button>
-                <button
+                {/* <button
                     type="submit"
                     className="flex items-center justify-center space-x-2 px-3 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 w-full sm:w-auto"
                 >
@@ -179,7 +163,7 @@ function SIPForm({ onSubmit }) {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
                     </svg>
                     <span>Generate Chart</span>
-                </button>
+                </button> */}
             </div>
         </form>
     );

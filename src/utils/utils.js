@@ -16,3 +16,31 @@ export const SIP_DETAILS = {
     "Midcap": 10000,
     "ELSS": 5000
 };
+
+export const CATEGORIES = [
+    "Large Cap Fund",
+    "Large & Mid Cap Fund",
+    "Mid Cap Fund",
+    "Small Cap Fund",
+    "Flex Cap Fund",
+    "Blue Chip Fund",
+    "ELSS",
+    "Hybrid Aggresive Fund",
+    "Hybrid Arbitrage Fund",
+    "Hybrid Equity Saving Fund",
+    "Hybrid Conservative Fund",
+    "Hybrid Multi Asset Fund",
+    "Hybrid Dynamic Asset Fund",
+    "Liquid Fund",
+    "Medium Duration Fund",
+    "Short Duration Fund",
+    "Money Market Fund",
+    "Ultra Short Fund",
+    "Low Duration Fund",
+    "Corporate Bond Fund",
+    "Value Fund",
+    "Focused Fund",
+    "Dividend Yield Fund",
+    "Sectoral Thematic fund",
+    "Index Fund",
+];
