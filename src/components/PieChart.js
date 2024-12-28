@@ -44,6 +44,11 @@ function PieChart({ data, title }) {
                     padding: 12,  // Adds spacing around legend items
                 }
             }
+        },
+        elements: {
+            arc: {
+                borderWidth: 1, // Set border width to a smaller value (0 for no border)
+            }
         }
     };
 

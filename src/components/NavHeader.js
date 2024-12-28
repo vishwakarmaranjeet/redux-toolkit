@@ -2,7 +2,7 @@ import React from 'react';
 
 function NavHeader() {
     return (
-        <header className="bg-gray-800 text-white p-4">
+        <header className="bg-gray-800 text-white p-4 shadow-lg">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 {/* Logo or Project Title */}
                 <div className="text-xl font-semibold">
