@@ -1,6 +1,36 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 
+// Custom style for the select dropdown to make it look like an input but with the arrow visible
+const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      height: '40px',  // Adjust the height to match input
+      padding: '0 4px',  // Same padding as input
+      borderRadius: '0.375rem',  // Matching rounded corners
+      borderColor: '#D1D5DB',  // Tailwind border color
+      boxShadow: 'none', // Remove box shadow on focus
+      '&:hover': {
+        borderColor: '#3B82F6', // Tailwind hover blue color
+      },
+      '&:focus': {
+        borderColor: '#3B82F6',  // Border color on focus
+        boxShadow: '0 0 0 2px rgba(59, 130, 246, 0.5)', // Tailwind ring-blue-400 effect
+      },
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#6B7280',  // Tailwind gray-500 color
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: '#6B7280', // Color of the arrow
+      '&:hover': {
+        color: '#3B82F6', // Color on hover
+      },
+    }),
+  };
+
 function SIPForm({ onSubmit }) {
     const [sipList, setSipList] = useState([{ category: '', amount: '' }]);
 
@@ -93,7 +123,8 @@ function SIPForm({ onSubmit }) {
                         options={categoryOptions}
                         placeholder="Select Category"
                         isClearable
-                        className="w-full"
+                        styles={customStyles} // Apply the custom styles
+                        className="w-full mb-2 sm:mb-0"
                     />
                     </div>
                     {/* <input
@@ -112,7 +143,7 @@ function SIPForm({ onSubmit }) {
                         value={`₹ ${new Intl.NumberFormat().format(item.amount || 0)}`}
                         onChange={(e) => handleChange(index, e)}
                         required
-                        className="w-full sm:w-1/2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
+                       className="w-full sm:w-1/2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 mt-3 sm:mt-0 sm:ml-4"
                     />
                     {sipList.length > 1 && (
                         <button
