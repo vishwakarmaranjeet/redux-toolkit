@@ -33,7 +33,7 @@ function SIPForm({ onSubmit }) {
 
     return (
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6 w-full max-w-2xl mx-auto">
-            <h2 className="text-2xl font-semibold text-gray-700 mb-6">Enter SIP Allocation</h2>
+            <h2 className="text-2xl font-semibold text-gray-700 mb-6">Enter SIP Amount</h2>
 
             {sipList.map((item, index) => (
                 <div key={index} className="flex flex-col sm:flex-row sm:space-x-4 mb-4">
