@@ -6,7 +6,19 @@ function SIPForm({ onSubmit }) {
     const handleChange = (index, e) => {
         const { name, value } = e.target;
         const list = [...sipList];
-        list[index][name] = value;
+         // If it's the 'category' field, allow only alphabetic characters
+        if (name === 'category') {
+            // Allow only alphabetic characters
+            const alphaValue = value.replace(/[^a-zA-Z]/g, "");
+            list[index][name] = alphaValue;
+        } else if (name === 'amount') {
+            // Handle 'amount' field with INR symbol and formatting
+            const rawValue = value.replace(/[^\d.]/g, "");
+            const formattedValue = new Intl.NumberFormat().format(rawValue);
+            list[index][name] = formattedValue.replace(/,/g, "");
+        } else {
+            list[index][name] = value;
+        }
         setSipList(list);
     };
 
@@ -47,10 +59,10 @@ function SIPForm({ onSubmit }) {
                         className="w-full sm:w-1/2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 mb-2 sm:mb-0"
                     />
                     <input
-                        type="number"
+                        type="text"
                         name="amount"
                         placeholder="Amount"
-                        value={item.amount}
+                        value={`₹ ${new Intl.NumberFormat().format(item.amount || 0)}`}
                         onChange={(e) => handleChange(index, e)}
                         required
                         className="w-full sm:w-1/2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"

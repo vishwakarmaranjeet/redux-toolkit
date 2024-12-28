@@ -37,7 +37,7 @@ function App() {
               <>
                 <div className="mb-4">
                   <h3 className="text-sm font-semibold text-gray-700 text-center">
-                    Total SIP: ₹{totalSIP}
+                    Total SIP: {`₹ ${new Intl.NumberFormat().format(totalSIP || 0)}`}
                   </h3>
                 </div>
                 <PieChart data={sipData} />
