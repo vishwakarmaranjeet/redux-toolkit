@@ -8,7 +8,9 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
+    "chart.js": "^4.4.7",
     "react": "19.0.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "19.0.0",
     "react-redux": "^9.1.2",
     "react-scripts": "5.0.1",
@@ -42,7 +44,10 @@
   },
   "devDependencies": {
     "ajv": "^7.2.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
     "sass": "^1.82.0",
-    "sass-loader": "^16.0.4"
+    "sass-loader": "^16.0.4",
+    "tailwindcss": "^3.4.17"
   }
 }
