@@ -4,18 +4,15 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-// Register chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function PieChart({ data, title }) {
     const chartRef = useRef(null);
-
     const totalSIP = Object.values(data).reduce((acc, sip) => acc + sip, 0);
     const sipLabels = Object.keys(data);
     const sipPercentages = Object.values(data).map((sip) =>
         ((sip / totalSIP) * 100).toFixed(2)
     );
-
     const chartData = {
         labels: sipLabels.map((label, index) =>
             `${label} (${sipPercentages[index]}%)`
@@ -25,7 +22,16 @@ function PieChart({ data, title }) {
                 label: 'SIP Allocation (%)',
                 data: sipPercentages,
                 backgroundColor: [
-                    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF',
+                    '#FF9F40',
+                    '#16C47F',
+                    '#2A004E',
+                    '#FF204E',
+                    '#FF204E'
                 ],
                 hoverOffset: 4
             }

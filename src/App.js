@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import Counter from './counter/Counter';
 // import User from "./User/User";
 // import FilterableProductTable from './ProductFilter/FilterableProductTable';
-import SIPForm from './components/SipForm';
-import PieChart from './components/PieChart';
 import NavHeader from './components/NavHeader';
+import CAGRCalculator from './components/CagrCalculator';
+import Home from './components/Home';
+import PageNotFound from './components/PageNotFound';
 
 // const PRODUCTS = [
 //   { category: "Fruits", price: "$3", stocked: true, name: "Apple" },
@@ -16,38 +18,16 @@ import NavHeader from './components/NavHeader';
 // ];
 
 function App() {
-  const [sipData, setSipData] = useState(null);
-
-  const handleSIPSubmit = (data) => {
-    setSipData(data);
-  };
-  // Calculate total SIP
-  const totalSIP = sipData ? Object.values(sipData).reduce((acc, sip) => acc + sip, 0) : 0;
   return (
     <>
-      <NavHeader />
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col sm:flex-row gap-8">
-          {/* SIP Form */}
-          <div className="flex-1 sm:w-1/2">
-            <SIPForm onSubmit={handleSIPSubmit} />
-          </div>
-          <div className="flex-1 sm:w-1/2">
-            {sipData && (
-              <>
-                <div className="mb-4">
-                  {totalSIP > 0 &&
-                    <h3 className="text-sm font-semibold text-gray-700 text-center">
-                      Total SIP: {`₹ ${new Intl.NumberFormat().format(totalSIP || 0)}`}
-                    </h3>
-                  }
-                </div>
-                <PieChart data={sipData} />
-              </>
-            )}
-          </div>
-        </div>
-      </div>
+      <Router>
+        <NavHeader />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/calculator" element={<CAGRCalculator />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
     </>
   );
 }
