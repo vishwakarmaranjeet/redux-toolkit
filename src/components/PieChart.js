@@ -94,7 +94,7 @@ function PieChart({ data, title }) {
 
     return (
         <div className="mt-0 sm:mt-5 flex flex-col items-center w-full max-w-md sm:max-w-lg mx-auto">
-            <div ref={chartRef} className="w-70 h-70 sm:w-80 sm:h-80">
+            <div ref={chartRef} className="w-60 h-60 sm:w-80 sm:h-80">
                 {totalSIP > 0 && <Pie data={chartData} options={options} />}
             </div>
             {totalSIP > 0 &&
