@@ -97,21 +97,19 @@ function PieChart({ data, title }) {
             <div ref={chartRef} className="w-60 h-60 sm:w-80 sm:h-80">
                 {totalSIP > 0 && <Pie data={chartData} options={options} />}
             </div>
-            {totalSIP > 0 &&
+            {totalSIP > 0 && (
                 <button
                     type="button"
                     onClick={handlePrint}
-                    className="flex text-sm items-center justify-center space-x-2 px-3 py-1 bg-teal-600 text-white rounded-lg hover:bg-teal-500 w-half mt-2 sm:w-auto"
-                >
+                    className="fixed bottom-6 right-6 bg-teal-600 hover:bg-teal-500 text-white rounded-full p-3 shadow-lg flex items-center justify-center w-12 h-12">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
                     </svg>
 
-                    <span>Download</span>
                 </button>
+            )
             }
-        </div>
+        </div >
     );
 }
 
